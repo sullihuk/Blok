@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/activerecord'
+require 'sqlite3'
 
 before do 
   @posts = Post.order "created_at DESC"
@@ -9,7 +10,7 @@ end
 
 set :database, {adapter: 'sqlite3', database:'blok.db' }
 
-class Posts < ActiveRecord::Base
+class Post < ActiveRecord::Base
 	validates :name, presence:true, length: {minimum: 2 }
 end
 
@@ -24,7 +25,13 @@ get '/' do
 	erb :index
 end
 
-post '/' do
+
+get '/' do
+
+  erb :new
+end
+
+post '/new' do
   @p = Post.new params[:post]
   @p.save
         
@@ -33,7 +40,7 @@ post '/' do
             erb :index
           else
             @error = @p.errors.full_messages.first
-            erb :index
+            erb :new
           end
           
 	
