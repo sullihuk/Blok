@@ -3,3 +3,9 @@ blok.rb
 blok.db
 blok.rb
 blok.rb
+.blok.rb.swp
+db/migrate/20210429035825_posts.rb
+db/migrate/20210425231042_posts.rb
+db/schema.rb
+db/migrate/20210425231042_posts.rb
+views/.index.erb.swp
